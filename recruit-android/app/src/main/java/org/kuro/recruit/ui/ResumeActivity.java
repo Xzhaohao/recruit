@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 
 import org.kuro.recruit.R;
 import org.kuro.recruit.adapter.EduExperienceAdapter;
+import org.kuro.recruit.adapter.JobExpectAdapter;
 import org.kuro.recruit.adapter.WorkHistoryAdapter;
 import org.kuro.recruit.api.Callback;
 import org.kuro.recruit.api.Http;
@@ -45,8 +46,11 @@ public class ResumeActivity extends BaseUIActivity {
         layoutVertical.setOrientation(LinearLayoutManager.VERTICAL);
         LinearLayoutManager layoutHorizontal = new LinearLayoutManager(this);
         layoutHorizontal.setOrientation(LinearLayoutManager.HORIZONTAL);
+        LinearLayoutManager layoutHorizontal2 = new LinearLayoutManager(this);
+        layoutHorizontal.setOrientation(LinearLayoutManager.HORIZONTAL);
         resumeBinding.workHistoryRecycler.setLayoutManager(layoutVertical);
-        resumeBinding.resumeEduRecycler.setLayoutManager(layoutHorizontal);
+        resumeBinding.jobExpectRecycler.setLayoutManager(layoutHorizontal);
+        resumeBinding.resumeEduRecycler.setLayoutManager(layoutHorizontal2);
     }
 
 
@@ -63,6 +67,7 @@ public class ResumeActivity extends BaseUIActivity {
                         resumeBinding.setAccount(account);
                         resumeBinding.workHistoryRecycler.setAdapter(new WorkHistoryAdapter(context, account.getWorkList()));
                         resumeBinding.resumeEduRecycler.setAdapter(new EduExperienceAdapter(context, account.getEduList()));
+                        resumeBinding.jobExpectRecycler.setAdapter(new JobExpectAdapter(context, account.getExpects()));
                     } else {
                         showToastSync(result.getMessage());
                     }

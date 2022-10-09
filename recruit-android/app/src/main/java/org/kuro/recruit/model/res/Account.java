@@ -1,6 +1,7 @@
 package org.kuro.recruit.model.res;
 
 import org.kuro.recruit.model.entity.EduExperience;
+import org.kuro.recruit.model.entity.JobExpect;
 import org.kuro.recruit.model.entity.User;
 import org.kuro.recruit.model.entity.WorkHistory;
 
@@ -11,6 +12,8 @@ public class Account extends User {
     List<EduExperience> eduList;
 
     List<WorkHistory> workList;
+
+    List<JobExpect> expects;
 
     public List<EduExperience> getEduList() {
         return eduList;
@@ -26,5 +29,13 @@ public class Account extends User {
 
     public void setWorkList(List<WorkHistory> workList) {
         this.workList = workList;
+    }
+
+    public List<JobExpect> getExpects() {
+        return expects;
+    }
+
+    public void setExpects(List<JobExpect> expects) {
+        this.expects = expects;
     }
 }

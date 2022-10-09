@@ -117,37 +117,11 @@
                     android:text="@string/job_expectations"
                     app:drawableEndCompat="@drawable/icon_edit_black" />
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/job_expect_recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="C++服务器开发 10~12K"
-                            android:textColor="@color/textColor"
-                            android:textSize="13sp" />
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:text="北京   互联网、移动互联网"
-                            android:textColor="@color/black_tag"
-                            android:textSize="12sp" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/icon_arrow_right" />
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never" />
             </LinearLayout>
 
             <View style="@style/resume_line" />

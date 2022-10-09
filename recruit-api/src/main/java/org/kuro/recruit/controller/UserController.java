@@ -9,21 +9,12 @@ import cn.hutool.core.util.StrUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.kuro.recruit.config.Constant;
-import org.kuro.recruit.model.bo.EduBo;
-import org.kuro.recruit.model.bo.LoginFromBo;
-import org.kuro.recruit.model.bo.MobileBo;
-import org.kuro.recruit.model.bo.WorkHistBo;
-import org.kuro.recruit.model.entity.EduExperience;
-import org.kuro.recruit.model.entity.LoginLog;
-import org.kuro.recruit.model.entity.User;
-import org.kuro.recruit.model.entity.WorkHistory;
+import org.kuro.recruit.model.bo.*;
+import org.kuro.recruit.model.entity.*;
 import org.kuro.recruit.model.result.Result;
 import org.kuro.recruit.model.result.ResultCode;
 import org.kuro.recruit.model.vo.AccountVo;
-import org.kuro.recruit.service.EduExperienceService;
-import org.kuro.recruit.service.LoginLogService;
-import org.kuro.recruit.service.UserService;
-import org.kuro.recruit.service.WorkHistoryService;
+import org.kuro.recruit.service.*;
 import org.kuro.recruit.utils.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +49,9 @@ public class UserController {
 
     @Autowired
     private EduExperienceService __edu_experience_service;
+
+    @Autowired
+    private JobExpectService __job_expect_service;
 
 
     @ApiOperation(value = "短信验证码", notes = "获取短信验证码")
@@ -188,7 +182,7 @@ public class UserController {
     }
 
 
-    @ApiOperation(value = "查询工作/教育经历", notes = "根据ID查询工作/教育经历，type:1教育经历，2工作经历")
+    @ApiOperation(value = "查询工作/教育经历", notes = "根据ID查询工作/教育经历，type:1教育经历，2工作经历，3求职期望")
     @PostMapping("/userInfo/{id}/{type}")
     public Result fetchEduApi(@PathVariable("id") String id, @PathVariable("type") Integer type) {
         switch (type) {
@@ -198,9 +192,9 @@ public class UserController {
             case 2:
                 WorkHistory history = __work_history_service.queryById(id);
                 return Result.ok().data(history);
-//            case 3:
-//                JobExpect expect = jobExpectService.queryById(id);
-//                return Result.ok().data(expect);
+            case 3:
+                JobExpect expect = __job_expect_service.queryById(id);
+                return Result.ok().data(expect);
             default:
                 return Result.error(ResultCode.PARAM_WRONGFUL);
         }
@@ -218,9 +212,27 @@ public class UserController {
 
         List<EduExperience> eduList = __edu_experience_service.queryEduListByUser(id);
         List<WorkHistory> historyList = __work_history_service.queryList(id);
+        List<JobExpect> expects = __job_expect_service.jobExpectList();
         vo.setEduList(eduList);
         vo.setWorkList(historyList);
+        vo.setExpects(expects);
 
         return Result.ok().data(vo);
     }
+
+
+    @ApiOperation(value = "添加/修改教育经历", notes = "添加/修改教育经历，1添加，2修改")
+    @PostMapping("/expect/save")
+    public Result saveExpectApi(@RequestBody @Valid JobExpectBo bo) {
+        JobExpect expect = new JobExpect();
+        BeanUtils.copyProperties(bo, expect);
+        if (bo.getOperate() == 1) {
+            __job_expect_service.saveJobExpect(expect);
+            return Result.ok(ResultCode.ADD_SUCCESS);
+        } else {
+            __job_expect_service.updateJobExpect(expect);
+            return Result.ok(ResultCode.UPDATE_SUCCESS);
+        }
+    }
+
 }
