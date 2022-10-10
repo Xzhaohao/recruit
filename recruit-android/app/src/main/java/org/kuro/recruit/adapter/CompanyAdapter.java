@@ -1,19 +1,25 @@
 package org.kuro.recruit.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.kuro.recruit.R;
+import org.kuro.recruit.databinding.CompanyItemBinding;
 import org.kuro.recruit.model.entity.Company;
 
 import java.util.List;
+import java.util.Random;
 
 public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHolder> {
 
@@ -28,17 +34,35 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
     @NonNull
     @Override
     public CompanyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        CardView view = (CardView) LayoutInflater.from(mContext).inflate(R.layout.company_item, parent, false);
-        return new ViewHolder(view);
+        CompanyItemBinding itemBinding = DataBindingUtil.inflate(LayoutInflater.from(mContext),
+                R.layout.company_item, parent, false);
+        return new ViewHolder(itemBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull CompanyAdapter.ViewHolder holder, int position) {
         Company company = mList.get(position);
-        holder.company_name.setText(company.getCompanyName());
-        holder.company_intro.setText(company.getIntro());
-        holder.company_tag.setText(company.getTag());
-        holder.company_jobs.setText(company.getJobs());
+        holder.itemBinding.setCompany(company);
+        String desc = company.getCity() + " | " + company.getServiceType() + " | " + company.getPopulation();
+        holder.itemBinding.companyIntro.setText(desc);
+
+        for (int i = 0; i < company.getTagArr().length; i++) {
+            TextView tag = (TextView) LayoutInflater.from(mContext).inflate(R.layout.company_item_tag, null);
+            tag.setText(company.getTagArr()[i]);
+            if (i < company.getTagArr().length - 1) {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                params.setMarginEnd(10);
+                tag.setLayoutParams(params);
+            }
+            holder.itemBinding.tags.addView(tag);
+        }
+
+        String job = getRandomJob();
+        int i = (int) (Math.random() * 30 + 5);
+        SpannableString jobHots = new SpannableString("热招：" + job + " 等" + i + "个岗位");
+        jobHots.setSpan(new ForegroundColorSpan(Color.parseColor("#3B73F6")), 3, job.length() + 3, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        holder.itemBinding.companyJobs.setText(jobHots);
     }
 
     @Override
@@ -47,18 +71,22 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView company_name;
-        TextView company_intro;
-        TextView company_tag;
-        TextView company_jobs;
+        private final CompanyItemBinding itemBinding;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            company_name = itemView.findViewById(R.id.company_name);
-            company_intro = itemView.findViewById(R.id.company_intro);
-            company_tag = itemView.findViewById(R.id.company_tag);
-            company_jobs = itemView.findViewById(R.id.company_jobs);
+        public ViewHolder(CompanyItemBinding itemBinding) {
+            super(itemBinding.getRoot());
+            this.itemBinding = itemBinding;
         }
+    }
+
+
+    public static String getRandomJob() {
+        String[] jobRandArr = {
+                "Web前端开发", "保安", "清洁工", "行政",
+        };
+        int size = jobRandArr.length;
+        Random random = new Random();
+        int index = random.nextInt(size);
+        return jobRandArr[index];
     }
 }

@@ -27,4 +27,7 @@ public class ApiConfig {
 
     // 个人简历信息
     public static final String ACCOUNT = "/sys/account";
+
+    // 企业列表
+    public static final String COMPANY = "/company/list";
 }

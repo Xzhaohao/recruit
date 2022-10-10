@@ -13,5 +13,11 @@ public class PageResult<T> {
 
     private long total;
 
+    // 当前页
+    private int pageNum;
+    // 总页数
+    private int pages;
+
     private List<T> rows;
+
 }

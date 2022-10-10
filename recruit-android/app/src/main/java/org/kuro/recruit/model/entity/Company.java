@@ -1,65 +1,187 @@
 package org.kuro.recruit.model.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class Company implements Serializable {
 
-    private String companyName;
-    private String intro;
-    private String tag;
-    private String jobs;
+    private String id;
 
-    public Company(String companyName, String intro, String tag, String jobs) {
-        this.companyName = companyName;
-        this.intro = intro;
-        this.tag = tag;
-        this.jobs = jobs;
+    private String name;
+
+    private String type;
+
+    private String logo;
+
+    private String city;
+
+    private String tags;
+
+    private String serviceType;
+
+    private String workHours;
+
+    private String introduce;
+
+    private String financingType;
+
+    private String population;
+
+    private String officialWebsite;
+
+    private Date foundingTime;
+
+    private Integer enabled;
+
+    private String enabledText;
+
+    private Date createTime;
+
+    private Date updateTime;
+
+    private String[] tagArr;
+
+    public String getId() {
+        return id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public String getName() {
+        return name;
     }
 
-    public String getIntro() {
-        return intro;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setIntro(String intro) {
-        this.intro = intro;
+    public String getType() {
+        return type;
     }
 
-    public String getTag() {
-        return tag;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public void setTag(String tag) {
-        this.tag = tag;
+    public String getLogo() {
+        return logo;
     }
 
-    public String getJobs() {
-        return jobs;
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
-    public void setJobs(String jobs) {
-        this.jobs = jobs;
+    public String getCity() {
+        return city;
     }
 
-    public static List<Company> list () {
-        List<Company> list = new ArrayList<>();
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-        list.add(new Company("千库科技有限公司", "北京 | 移动互联网 | 500~1000人", "五险一金", "热招：高级交互设计师 等66个岗位"));
-        list.add(new Company("千库科技有限公司", "北京 | 移动互联网 | 500~1000人", "五险一金", "热招：高级交互设计师 等66个岗位"));
-        list.add(new Company("千库科技有限公司", "北京 | 移动互联网 | 500~1000人", "五险一金", "热招：高级交互设计师 等66个岗位"));
-        list.add(new Company("千库科技有限公司", "北京 | 移动互联网 | 500~1000人", "五险一金", "热招：高级交互设计师 等66个岗位"));
-        list.add(new Company("千库科技有限公司", "北京 | 移动互联网 | 500~1000人", "五险一金", "热招：高级交互设计师 等66个岗位"));
-        list.add(new Company("千库科技有限公司", "北京 | 移动互联网 | 500~1000人", "五险一金", "热招：高级交互设计师 等66个岗位"));
+    public String getTags() {
+        return tags;
+    }
 
-        return list;
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
+
+    public String getServiceType() {
+        return serviceType;
+    }
+
+    public void setServiceType(String serviceType) {
+        this.serviceType = serviceType;
+    }
+
+    public String getWorkHours() {
+        return workHours;
+    }
+
+    public void setWorkHours(String workHours) {
+        this.workHours = workHours;
+    }
+
+    public String getIntroduce() {
+        return introduce;
+    }
+
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
+
+    public String getFinancingType() {
+        return financingType;
+    }
+
+    public void setFinancingType(String financingType) {
+        this.financingType = financingType;
+    }
+
+    public String getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(String population) {
+        this.population = population;
+    }
+
+    public String getOfficialWebsite() {
+        return officialWebsite;
+    }
+
+    public void setOfficialWebsite(String officialWebsite) {
+        this.officialWebsite = officialWebsite;
+    }
+
+    public Date getFoundingTime() {
+        return foundingTime;
+    }
+
+    public void setFoundingTime(Date foundingTime) {
+        this.foundingTime = foundingTime;
+    }
+
+    public Integer getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Integer enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getEnabledText() {
+        return enabledText;
+    }
+
+    public void setEnabledText(String enabledText) {
+        this.enabledText = enabledText;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String[] getTagArr() {
+        return tagArr;
+    }
+
+    public void setTagArr(String[] tagArr) {
+        this.tagArr = tagArr;
     }
 }

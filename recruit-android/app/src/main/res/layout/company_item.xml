@@ -1,73 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:cardCornerRadius="10dp"
-    app:cardElevation="8dp"
-    app:cardPreventCornerOverlap="false"
-    app:cardUseCompatPadding="true">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="company"
+            type="org.kuro.recruit.model.entity.Company" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="15dp">
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="10dp"
-            android:src="@mipmap/icon_wechat" />
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:padding="15dp">
 
-            <TextView
-                android:id="@+id/company_name"
+            <org.kuro.recruit.view.avatar.Avatar
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="10dp"
+                app:image_url="@{company.logo}"
+                app:isCircle="@{true}"
+                tools:src="@mipmap/icon_wechat" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/blackText3"
-                android:textSize="18sp"
-                tools:text="公司名称" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/company_intro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="8dp"
-                android:textColor="@color/blackText3"
-                android:textSize="10sp"
-                tools:ignore="SmallSp"
-                tools:text="北京 | 移动互联网 | 500~1000人" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{company.name}"
+                    android:textColor="@color/blackText3"
+                    android:textSize="18sp"
+                    tools:text="公司名称" />
 
-            <TextView
-                android:id="@+id/company_tag"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/shape_tags"
-                android:paddingHorizontal="6dp"
-                android:paddingVertical="3dp"
-                android:textColor="@color/blackText3"
-                android:textSize="10sp"
-                tools:ignore="SmallSp"
-                tools:text="五险一金" />
+                <TextView
+                    android:id="@+id/company_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@color/blackText3"
+                    android:textSize="10sp"
+                    tools:ignore="SmallSp"
+                    tools:text="北京 | 移动互联网 | 500~1000人" />
 
-            <View
-                style="@style/default_line"
-                android:layout_marginVertical="15dp" />
+                <LinearLayout
+                    android:id="@+id/tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/company_jobs"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/blackText3"
-                android:textSize="12sp"
-                app:drawableEndCompat="@drawable/icon_arrow_right"
-                tools:text="热招：Web前端开发 等72个岗位" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+                <View
+                    style="@style/default_line"
+                    android:layout_marginVertical="15dp" />
+
+                <TextView
+                    android:id="@+id/company_jobs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blackText3"
+                    android:textSize="12sp"
+                    app:drawableEndCompat="@drawable/icon_arrow_right"
+                    tools:text="热招：Web前端开发 等72个岗位" />
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</layout>
