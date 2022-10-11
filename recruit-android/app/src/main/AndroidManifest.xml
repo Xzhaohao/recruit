@@ -45,6 +45,9 @@
         <activity
             android:name=".ui.EduActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.SearchActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

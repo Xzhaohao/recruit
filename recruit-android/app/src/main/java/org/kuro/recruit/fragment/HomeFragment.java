@@ -1,5 +1,6 @@
 package org.kuro.recruit.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import org.kuro.recruit.R;
 import org.kuro.recruit.adapter.RecruitAdapter;
 import org.kuro.recruit.base.BaseFragment;
 import org.kuro.recruit.databinding.FragmentHomeBinding;
+import org.kuro.recruit.ui.SearchActivity;
 
 
 public class HomeFragment extends BaseFragment {
@@ -35,13 +37,14 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        homeBinding.appBar.addOnOffsetChangedListener((appBarLayout, i) -> {
-            if (Math.abs(i) < appBarLayout.getTotalScrollRange()) {
-                homeBinding.homeSearch.setVisibility(View.GONE);
-            } else if (Math.abs(i) >= appBarLayout.getTotalScrollRange()) {
-                homeBinding.homeSearch.setVisibility(View.VISIBLE);
+        homeBinding.homeBar.setOnScrimsListener((layout, shown) -> {
+            if (shown) {
+                homeBinding.searchContainer.setBackgroundResource(R.mipmap.common_bg);
+            } else {
+                homeBinding.searchContainer.setBackgroundColor(Color.TRANSPARENT);
             }
         });
+        homeBinding.searchInput.setOnClickListener(v -> navigateTo(SearchActivity.class));
     }
 
     @Override

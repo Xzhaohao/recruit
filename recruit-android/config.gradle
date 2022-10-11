@@ -9,12 +9,24 @@ ext {
     ]
     // 依赖配置
     dependencies = [
-            "appcompat"       : 'androidx.appcompat:appcompat:1.3.0',
-            "material"        : 'com.google.android.material:material:1.4.0',
-            "constraintlayout": 'androidx.constraintlayout:constraintlayout:2.0.4',
-            "glide"           : 'com.github.bumptech.glide:glide:4.13.2',
-            "gson"            : 'com.google.code.gson:gson:2.8.6',
-            "okhttp"          : 'com.squareup.okhttp3:okhttp:4.2.0',
-            "okhttp3_logging" : 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+            "appcompat"         : 'androidx.appcompat:appcompat:1.3.0',
+            "material"          : 'com.google.android.material:material:1.4.0',
+            "constraintlayout"  : 'androidx.constraintlayout:constraintlayout:2.0.4',
+            // 加载网络图片
+            "glide"             : 'com.github.bumptech.glide:glide:4.13.2',
+            // 解析 Json
+            "gson"              : 'com.google.code.gson:gson:2.8.6',
+            // OKHTTP
+            "okhttp"            : 'com.squareup.okhttp3:okhttp:4.2.0',
+            "okhttp3_logging"   : 'com.squareup.okhttp3:logging-interceptor:3.5.0',
+            // 下拉刷新
+            "smartRefreshLayout": 'io.github.scwang90:refresh-layout-kernel:2.0.5',
+            // 谷歌刷新头
+            "headerMaterial"    : 'io.github.scwang90:refresh-header-material:2.0.5',
+            // paging
+            "paging3"           : 'androidx.paging:paging-runtime:3.1.1',
+            "paging2"           : 'androidx.paging:paging-runtime:2.1.0',
+            "lifecycle"         : 'androidx.lifecycle:lifecycle-extensions:2.1.0',
+            "tag"               : 'me.gujun.android.taggroup:library:1.4@aar'
     ]
 }

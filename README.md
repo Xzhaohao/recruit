@@ -12,7 +12,5 @@
 
 #### 界面展示
 
-<img src="/images/company.jpg" width="30%" />
-<img src="/images/message.jpg" width="30%" />
-<img src="/images/mine.jpg" width="30%" />
-<img src="/images/resume.jpg" width="30%" />
+<img src="/images/company.jpg" width="30%" /><img src="/images/message.jpg" width="30%" />
+<img src="/images/mine.jpg" width="30%" /><img src="/images/resume.jpg" width="30%" /><img src="/images/search.jpg" width="30%" />

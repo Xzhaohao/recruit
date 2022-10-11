@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 
@@ -21,12 +22,14 @@ import org.kuro.recruit.config.ApiConfig;
 import org.kuro.recruit.databinding.FragmentCompanyBinding;
 import org.kuro.recruit.model.res.CompanyRes;
 import org.kuro.recruit.model.res.PageCompany;
+import org.kuro.recruit.ui.SearchActivity;
 
 import java.util.HashMap;
 
 public class CompanyFragment extends BaseFragment {
 
     private FragmentCompanyBinding companyBinding;
+    private RecyclerView mRecycler;
 
     public CompanyFragment() {
     }
@@ -38,11 +41,18 @@ public class CompanyFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         companyBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_company, container, false);
+
+        mRecycler = companyBinding.companyRecycler;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        mRecycler.setLayoutManager(layoutManager);
+
         return companyBinding.getRoot();
     }
 
     @Override
     protected void initView() {
+        companyBinding.searchInput.setOnClickListener(v -> navigateTo(SearchActivity.class));
     }
 
     @Override
@@ -53,9 +63,9 @@ public class CompanyFragment extends BaseFragment {
 
 
     // 获取企业列表
+    @SuppressLint("NotifyDataSetChanged")
     private void fetchCompanyList(HashMap<String, Object> params) {
         Http.config(ApiConfig.COMPANY, params).get(requireActivity(), new Callback() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onSuccess(String res) {
                 requireActivity().runOnUiThread(() -> {
@@ -68,12 +78,8 @@ public class CompanyFragment extends BaseFragment {
                             companyBinding.content.setVisibility(View.VISIBLE);
                         }
 
-                        LinearLayoutManager layoutManager = new LinearLayoutManager(requireContext());
-                        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                        companyBinding.companyRecycler.setLayoutManager(layoutManager);
-
                         CompanyAdapter adapter = new CompanyAdapter(requireActivity(), data.getRows());
-                        companyBinding.companyRecycler.setAdapter(adapter);
+                        mRecycler.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     } else {
                         showToastSync(result.getMessage());

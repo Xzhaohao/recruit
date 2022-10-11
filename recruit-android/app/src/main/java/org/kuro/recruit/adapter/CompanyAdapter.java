@@ -1,5 +1,6 @@
 package org.kuro.recruit.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.SpannableString;
@@ -39,6 +40,7 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
         return new ViewHolder(itemBinding);
     }
 
+    @SuppressLint("InflateParams")
     @Override
     public void onBindViewHolder(@NonNull CompanyAdapter.ViewHolder holder, int position) {
         Company company = mList.get(position);
@@ -61,7 +63,9 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
         String job = getRandomJob();
         int i = (int) (Math.random() * 30 + 5);
         SpannableString jobHots = new SpannableString("热招：" + job + " 等" + i + "个岗位");
-        jobHots.setSpan(new ForegroundColorSpan(Color.parseColor("#3B73F6")), 3, job.length() + 3, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
+        jobHots.setSpan(new ForegroundColorSpan(Color.parseColor("#3B73F6")),
+                3, job.length() + 3,
+                Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         holder.itemBinding.companyJobs.setText(jobHots);
     }
 

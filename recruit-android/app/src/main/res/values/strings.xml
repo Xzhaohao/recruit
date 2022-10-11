@@ -31,8 +31,14 @@
     <string name="search">搜索&#8230;&#8230;&#8230;</string>
     <string name="company">公司</string>
 
-    <!--消息页-->
+    <!-- 消息页 -->
     <string name="message">消息</string>
+
+    <!-- 搜索页面 -->
+    <string name="search_text">搜索</string>
+    <string name="search_hot">热门搜索</string>
+    <string name="search_history">历史搜索</string>
+    <string name="search_like">猜你喜欢</string>
 
     <!-- 个人中心页 -->
     <string name="mine_curriculum_file">简历附件</string>

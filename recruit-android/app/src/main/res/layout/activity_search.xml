@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.SearchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:paddingEnd="15dp"
+        tools:ignore="RtlSymmetry">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="@string/search"
+            android:paddingStart="15dp"
+            android:src="@drawable/icon_arrow_left_gray"
+            tools:ignore="RtlSymmetry" />
+
+        <EditText
+            style="@style/search_page_input"
+            android:layout_marginBottom="5dp"
+            android:autofillHints="username"
+            tools:ignore="LabelFor" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/shape_login_btn"
+            android:text="@string/search_text"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <TextView
+        style="@style/search_page_title"
+        android:text="@string/search_hot" />
+
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/hot_tag"
+        style="@style/search_tag"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        style="@style/search_page_title"
+        android:text="@string/search_history" />
+
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/history_tag"
+        style="@style/search_tag"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        style="@style/search_page_title"
+        android:text="@string/search_like" />
+
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/like_tag"
+        style="@style/search_like_tag"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp" />
+</LinearLayout>

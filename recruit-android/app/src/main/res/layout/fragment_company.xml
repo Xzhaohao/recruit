@@ -35,6 +35,7 @@
 
                 <!-- 搜索框 -->
                 <EditText
+                    android:id="@+id/search_input"
                     style="@style/search_input"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="5dp"
