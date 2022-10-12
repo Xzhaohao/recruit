@@ -1,0 +1,350 @@
+package org.kuro.recruit.view.radio;
+
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.res.TypedArray;
+import android.os.Build;
+import android.util.AttributeSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityEvent;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * 自定义 RadioGroup 使其内部嵌套LinearLayout布局实现按钮单选
+ */
+public class MyRadioGroup extends LinearLayout {
+
+    private int mCheckedId = -1;
+
+    private CompoundButton.OnCheckedChangeListener mChildOnCheckedChangeListener;
+
+    private boolean mProtectFromCheckedChange = false;
+    private OnCheckedChangeListener mOnCheckedChangeListener;
+    private PassThroughHierarchyChangeListener mPassThroughListener;
+
+    /**
+     * {@inheritDoc}
+     */
+    public MyRadioGroup(Context context) {
+        super(context);
+        setOrientation(VERTICAL);
+        init();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public MyRadioGroup(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
+
+    private void init() {
+        mChildOnCheckedChangeListener = new CheckedStateTracker();
+        mPassThroughListener = new PassThroughHierarchyChangeListener();
+        super.setOnHierarchyChangeListener(mPassThroughListener);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setOnHierarchyChangeListener(OnHierarchyChangeListener listener) {
+        mPassThroughListener.mOnHierarchyChangeListener = listener;
+    }
+
+    public void setCheckWithoutNotif(int id) {
+        if (id != -1 && (id == mCheckedId)) {
+            return;
+        }
+
+        mProtectFromCheckedChange = true;
+        if (mCheckedId != -1) {
+            setCheckedStateForView(mCheckedId, false);
+        }
+
+        if (id != -1) {
+            setCheckedStateForView(id, true);
+        }
+
+        mCheckedId = id;
+        mProtectFromCheckedChange = false;
+    }
+
+    @Override
+    public void addView(View child, int index, ViewGroup.LayoutParams params) {
+        List<RadioButton> btns = getAllRadioButton(child);
+        if (btns != null && btns.size() > 0) {
+            for (RadioButton button : btns) {
+                if (button.isChecked()) {
+                    mProtectFromCheckedChange = true;
+                    if (mCheckedId != -1) {
+                        setCheckedStateForView(mCheckedId, false);
+                    }
+                    mProtectFromCheckedChange = false;
+                    setCheckedId(button.getId());
+                }
+            }
+        }
+        super.addView(child, index, params);
+    }
+
+    /**
+     * get all radio buttons which are in the view
+     *
+     * @param child
+     */
+    private List<RadioButton> getAllRadioButton(View child) {
+        List<RadioButton> btns = new ArrayList<>();
+        if (child instanceof RadioButton) {
+            btns.add((RadioButton) child);
+        } else if (child instanceof ViewGroup) {
+            int counts = ((ViewGroup) child).getChildCount();
+            for (int i = 0; i < counts; i++) {
+                btns.addAll(getAllRadioButton(((ViewGroup) child).getChildAt(i)));
+            }
+        }
+        return btns;
+    }
+
+    /**
+     * <p>Sets the selection to the radio button whose identifier is passed in
+     * parameter. Using -1 as the selection identifier clears the selection;
+     * such an operation is equivalent to invoking {@link #clearCheck()}.</p>
+     *
+     * @param id the unique id of the radio button to select in this group
+     * @see #getCheckedRadioButtonId()
+     * @see #clearCheck()
+     */
+    public void check(int id) {
+        // don't even bother
+        if (id != -1 && (id == mCheckedId)) {
+            return;
+        }
+
+        if (mCheckedId != -1) {
+            setCheckedStateForView(mCheckedId, false);
+        }
+
+        if (id != -1) {
+            setCheckedStateForView(id, true);
+        }
+
+        setCheckedId(id);
+    }
+
+    private void setCheckedId(int id) {
+        mCheckedId = id;
+        if (mOnCheckedChangeListener != null) {
+            mOnCheckedChangeListener.onCheckedChanged(this, mCheckedId);
+        }
+    }
+
+    private void setCheckedStateForView(int viewId, boolean checked) {
+        View checkedView = findViewById(viewId);
+        if (checkedView != null && checkedView instanceof RadioButton) {
+            ((RadioButton) checkedView).setChecked(checked);
+        }
+    }
+
+    /**
+     * <p>Returns the identifier of the selected radio button in this group.
+     * Upon empty selection, the returned value is -1.</p>
+     *
+     * @return the unique id of the selected radio button in this group
+     * @attr ref android.R.styleable#MyRadioGroup_checkedButton
+     * @see #check(int)
+     * @see #clearCheck()
+     */
+    public int getCheckedRadioButtonId() {
+        return mCheckedId;
+    }
+
+    /**
+     * <p>Clears the selection. When the selection is cleared, no radio button
+     * in this group is selected and {@link #getCheckedRadioButtonId()} returns
+     * null.</p>
+     *
+     * @see #check(int)
+     * @see #getCheckedRadioButtonId()
+     */
+    public void clearCheck() {
+        check(-1);
+    }
+
+    /**
+     * <p>Register a callback to be invoked when the checked radio button
+     * changes in this group.</p>
+     *
+     * @param listener the callback to call on checked state change
+     */
+    public void setOnCheckedChangeListener(OnCheckedChangeListener listener) {
+        mOnCheckedChangeListener = listener;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
+        return new LayoutParams(getContext(), attrs);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected boolean checkLayoutParams(ViewGroup.LayoutParams p) {
+        return p instanceof LayoutParams;
+    }
+
+    @Override
+    protected LinearLayout.LayoutParams generateDefaultLayoutParams() {
+        return new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+    }
+
+    @Override
+    public void onInitializeAccessibilityEvent(AccessibilityEvent event) {
+        super.onInitializeAccessibilityEvent(event);
+        event.setClassName(MyRadioGroup.class.getName());
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo info) {
+        super.onInitializeAccessibilityNodeInfo(info);
+        info.setClassName(MyRadioGroup.class.getName());
+    }
+
+
+    public static class LayoutParams extends LinearLayout.LayoutParams {
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(int w, int h) {
+            super(w, h);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(int w, int h, float initWeight) {
+            super(w, h, initWeight);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(ViewGroup.LayoutParams p) {
+            super(p);
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public LayoutParams(MarginLayoutParams source) {
+            super(source);
+        }
+
+
+        @Override
+        protected void setBaseAttributes(TypedArray a, int widthAttr, int heightAttr) {
+
+            if (a.hasValue(widthAttr)) {
+                width = a.getLayoutDimension(widthAttr, "layout_width");
+            } else {
+                width = WRAP_CONTENT;
+            }
+
+            if (a.hasValue(heightAttr)) {
+                height = a.getLayoutDimension(heightAttr, "layout_height");
+            } else {
+                height = WRAP_CONTENT;
+            }
+        }
+    }
+
+    public interface OnCheckedChangeListener {
+        public void onCheckedChanged(MyRadioGroup group, int checkedId);
+    }
+
+    private class CheckedStateTracker implements CompoundButton.OnCheckedChangeListener {
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (mProtectFromCheckedChange) {
+                return;
+            }
+
+            mProtectFromCheckedChange = true;
+            if (mCheckedId != -1) {
+                setCheckedStateForView(mCheckedId, false);
+            }
+            mProtectFromCheckedChange = false;
+
+            int id = buttonView.getId();
+            setCheckedId(id);
+        }
+    }
+
+
+    private class PassThroughHierarchyChangeListener implements
+            OnHierarchyChangeListener {
+        private OnHierarchyChangeListener mOnHierarchyChangeListener;
+
+        /**
+         * {@inheritDoc}
+         */
+        @SuppressLint("NewApi")
+        public void onChildViewAdded(View parent, View child) {
+            if (parent == MyRadioGroup.this) {
+                List<RadioButton> btns = getAllRadioButton(child);
+                if (btns != null && btns.size() > 0) {
+                    for (RadioButton btn : btns) {
+                        int id = btn.getId();
+                        // generates an id if it's missing
+                        if (id == View.NO_ID && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+                            id = View.generateViewId();
+                            btn.setId(id);
+                        }
+                        btn.setOnCheckedChangeListener(
+                                mChildOnCheckedChangeListener);
+                    }
+                }
+            }
+
+            if (mOnHierarchyChangeListener != null) {
+                mOnHierarchyChangeListener.onChildViewAdded(parent, child);
+            }
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public void onChildViewRemoved(View parent, View child) {
+            if (parent == MyRadioGroup.this) {
+                List<RadioButton> btns = getAllRadioButton(child);
+                if (btns != null && btns.size() > 0) {
+                    for (RadioButton btn : btns) {
+                        btn.setOnCheckedChangeListener(null);
+                    }
+                }
+            }
+
+            if (mOnHierarchyChangeListener != null) {
+                mOnHierarchyChangeListener.onChildViewRemoved(parent, child);
+            }
+        }
+    }
+}

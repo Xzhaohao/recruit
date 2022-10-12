@@ -21,8 +21,9 @@ ext {
             "okhttp3_logging"   : 'com.squareup.okhttp3:logging-interceptor:3.5.0',
             // 下拉刷新
             "smartRefreshLayout": 'io.github.scwang90:refresh-layout-kernel:2.0.5',
-            // 谷歌刷新头
-            "headerMaterial"    : 'io.github.scwang90:refresh-header-material:2.0.5',
+            // 刷新头尾
+            "refreshHeader"     : 'io.github.scwang90:refresh-header-classics:2.0.5',
+            "refreshFooter"     : 'io.github.scwang90:refresh-footer-classics:2.0.5',
             // paging
             "paging3"           : 'androidx.paging:paging-runtime:3.1.1',
             "paging2"           : 'androidx.paging:paging-runtime:2.1.0',

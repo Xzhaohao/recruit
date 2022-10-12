@@ -19,17 +19,26 @@ import org.kuro.recruit.R;
 import org.kuro.recruit.databinding.CompanyItemBinding;
 import org.kuro.recruit.model.entity.Company;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHolder> {
 
-    private final List<Company> mList;
+    private List<Company> mList = new ArrayList<>();
     private final Context mContext;
+
+    public CompanyAdapter(Context context) {
+        this.mContext = context;
+    }
 
     public CompanyAdapter(Context context, List<Company> list) {
         this.mList = list;
         this.mContext = context;
+    }
+
+    public void setList(List<Company> mList) {
+        this.mList = mList;
     }
 
     @NonNull

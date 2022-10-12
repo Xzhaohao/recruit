@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FilterActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="75dp"
+            android:gravity="bottom"
+            tools:ignore="UselessParent">
+
+            <ImageView
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/home_filter"
+                android:paddingStart="15dp"
+                android:src="@drawable/icon_close"
+                tools:ignore="RtlSymmetry" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:text="@string/home_filter"
+                android:textColor="@color/blackText3"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/search_page_title"
+            android:layout_marginBottom="15dp"
+            android:text="@string/filter_title1" />
+
+        <RadioGroup
+            android:id="@+id/r_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radio_r_t"
+                style="@style/home_filter_item"
+                android:checked="true"
+                android:text="@string/unlimited" />
+
+            <RadioButton
+                android:id="@+id/radio_r_t_1"
+                style="@style/home_filter_item"
+                android:text="@string/qz" />
+
+            <RadioButton
+                android:id="@+id/radio_r_t_2"
+                style="@style/home_filter_item"
+                android:text="@string/jz" />
+        </RadioGroup>
+
+        <TextView
+            style="@style/search_page_title"
+            android:layout_marginBottom="15dp"
+            android:text="@string/filter_title2" />
+
+
+        <org.kuro.recruit.view.radio.MyRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_t"
+                    style="@style/home_filter_item"
+                    android:checked="true"
+                    android:text="@string/unlimited" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_1"
+                    style="@style/home_filter_item"
+                    android:text="@string/edu_1" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_2"
+                    style="@style/home_filter_item"
+                    android:text="@string/edu_2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_3"
+                    style="@style/home_filter_item"
+                    android:text="@string/edu_3" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_4"
+                    style="@style/home_filter_item"
+                    android:text="@string/edu_4" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_5"
+                    style="@style/home_filter_item"
+                    android:text="@string/edu_5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_6"
+                    style="@style/home_filter_item"
+                    android:text="@string/edu_6" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_e_7"
+                    style="@style/home_filter_item"
+                    android:text="@string/edu_7" />
+
+                <RadioButton style="@style/home_filter_item_wrap" />
+            </LinearLayout>
+        </org.kuro.recruit.view.radio.MyRadioGroup>
+
+
+        <TextView
+            style="@style/search_page_title"
+            android:layout_marginBottom="15dp"
+            android:text="@string/filter_title3" />
+
+        <org.kuro.recruit.view.radio.MyRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_t"
+                    style="@style/home_filter_item"
+                    android:checked="true"
+                    android:text="@string/unlimited" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_1"
+                    style="@style/home_filter_item"
+                    android:text="@string/year_1" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_2"
+                    style="@style/home_filter_item"
+                    android:text="@string/year_2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_3"
+                    style="@style/home_filter_item"
+                    android:text="@string/year_3" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_4"
+                    style="@style/home_filter_item"
+                    android:text="@string/year_4" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_5"
+                    style="@style/home_filter_item"
+                    android:text="@string/year_5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_6"
+                    style="@style/home_filter_item"
+                    android:text="@string/year_6" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_y_7"
+                    style="@style/home_filter_item"
+                    android:text="@string/year_7" />
+
+                <RadioButton style="@style/home_filter_item_wrap" />
+            </LinearLayout>
+        </org.kuro.recruit.view.radio.MyRadioGroup>
+
+        <TextView
+            style="@style/search_page_title"
+            android:layout_marginBottom="15dp"
+            android:text="@string/filter_title4" />
+
+        <org.kuro.recruit.view.radio.MyRadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_r_s_t"
+                    style="@style/home_filter_item"
+                    android:checked="true"
+                    android:text="@string/unlimited" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_s_1"
+                    style="@style/home_filter_item"
+                    android:text="@string/salary_1" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_s_2"
+                    style="@style/home_filter_item"
+                    android:text="@string/salary_2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/radio_r_s_3"
+                    style="@style/home_filter_item"
+                    android:text="@string/salary_3" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_s_4"
+                    style="@style/home_filter_item"
+                    android:text="@string/salary_4" />
+
+                <RadioButton
+                    android:id="@+id/radio_r_s_5"
+                    style="@style/home_filter_item"
+                    android:text="@string/salary_5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radio_r_s_6"
+                    style="@style/home_filter_item"
+                    android:text="@string/salary_6" />
+
+                <RadioButton style="@style/home_filter_item_wrap" />
+
+                <RadioButton style="@style/home_filter_item_wrap" />
+            </LinearLayout>
+        </org.kuro.recruit.view.radio.MyRadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View style="@style/default_line" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginVertical="7dp"
+            android:background="@drawable/shape_login_btn"
+            android:text="@string/confirm"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+</RelativeLayout>

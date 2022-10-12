@@ -14,6 +14,7 @@ import org.kuro.recruit.R;
 import org.kuro.recruit.adapter.RecruitAdapter;
 import org.kuro.recruit.base.BaseFragment;
 import org.kuro.recruit.databinding.FragmentHomeBinding;
+import org.kuro.recruit.ui.FilterActivity;
 import org.kuro.recruit.ui.SearchActivity;
 
 
@@ -44,7 +45,9 @@ public class HomeFragment extends BaseFragment {
                 homeBinding.searchContainer.setBackgroundColor(Color.TRANSPARENT);
             }
         });
+
         homeBinding.searchInput.setOnClickListener(v -> navigateTo(SearchActivity.class));
+        homeBinding.filterPage.setOnClickListener(v -> navigateTo(FilterActivity.class));
     }
 
     @Override

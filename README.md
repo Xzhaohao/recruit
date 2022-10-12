@@ -6,11 +6,10 @@
 - 移动端
   - Android Jetpack
 
-- 后台管理
-  - Qt5.12
 
 
 #### 界面展示
 
-<img src="/images/company.jpg" width="30%" /><img src="/images/message.jpg" width="30%" />
+<img src="/images/home.jpg" width="30%" /><img src="/images/company.jpg" width="30%" /><img src="/images/message.jpg" width="30%" />
 <img src="/images/mine.jpg" width="30%" /><img src="/images/resume.jpg" width="30%" /><img src="/images/search.jpg" width="30%" />
+<img src="/images/filter.jpg" width="30%" />

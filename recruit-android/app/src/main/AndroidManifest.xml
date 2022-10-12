@@ -48,6 +48,9 @@
         <activity
             android:name=".ui.SearchActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.FilterActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -1,4 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 筛选页面item -->
+    <style name="home_filter_item">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginHorizontal">5dp</item>
+        <item name="android:background">@drawable/home_filter_bg</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/blackText3</item>
+    </style>
 
+    <!-- 筛选页面填充item -->
+    <style name="home_filter_item_wrap">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_marginHorizontal">5dp</item>
+    </style>
 </resources>
