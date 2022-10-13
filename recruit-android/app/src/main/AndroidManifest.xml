@@ -51,6 +51,9 @@
         <activity
             android:name=".ui.FilterActivity"
             android:exported="false" />
+        <activity
+            android:name=".ui.CompanyDetailActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

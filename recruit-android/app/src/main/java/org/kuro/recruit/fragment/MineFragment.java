@@ -12,6 +12,7 @@ import org.kuro.recruit.R;
 import org.kuro.recruit.base.BaseFragment;
 import org.kuro.recruit.databinding.FragmentMineBinding;
 import org.kuro.recruit.manager.UserManage;
+import org.kuro.recruit.ui.CompanyDetailActivity;
 import org.kuro.recruit.ui.ResumeActivity;
 
 public class MineFragment extends BaseFragment {
@@ -34,6 +35,8 @@ public class MineFragment extends BaseFragment {
     protected void initView() {
         // 前往个人在线简历页面
         mineBinding.rowResume.setOnClickListener(v -> navigateTo(ResumeActivity.class));
+
+        mineBinding.followCompany.setOnClickListener(v -> navigateTo(CompanyDetailActivity.class));
     }
 
 

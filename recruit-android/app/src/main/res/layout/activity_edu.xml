@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -53,9 +54,11 @@
             android:text="@string/edu" />
 
         <EditText
+            android:id="@+id/edu_input"
             style="@style/edu_input"
             android:autofillHints=""
             android:drawableEnd="@drawable/icon_arrow_right"
+            android:focusable="false"
             android:hint="@string/edu_hint" />
 
         <View style="@style/default_line" />
@@ -82,9 +85,11 @@
             android:text="@string/time_quantum" />
 
         <EditText
+            android:id="@+id/time_input"
             style="@style/edu_input"
             android:autofillHints=""
             android:drawableEnd="@drawable/icon_arrow_right"
+            android:focusable="false"
             android:hint="@string/time_quantum_hint" />
 
         <View style="@style/default_line" />

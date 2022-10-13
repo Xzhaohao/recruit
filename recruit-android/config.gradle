@@ -28,6 +28,9 @@ ext {
             "paging3"           : 'androidx.paging:paging-runtime:3.1.1',
             "paging2"           : 'androidx.paging:paging-runtime:2.1.0',
             "lifecycle"         : 'androidx.lifecycle:lifecycle-extensions:2.1.0',
-            "tag"               : 'me.gujun.android.taggroup:library:1.4@aar'
+            "tag"               : 'me.gujun.android.taggroup:library:1.4@aar',
+            // 选择类库
+            "AndroidPicker"     : 'com.github.gzu-liyujiang.AndroidPicker:Common:4.1.9',
+            "WheelPicker"       : 'com.github.gzu-liyujiang.AndroidPicker:WheelPicker:4.1.9'
     ]
 }

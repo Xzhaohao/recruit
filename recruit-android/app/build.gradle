@@ -78,4 +78,6 @@ dependencies {
     implementation rootProject.ext.dependencies["paging2"]
     implementation rootProject.ext.dependencies["lifecycle"]
     implementation rootProject.ext.dependencies["tag"]
+    implementation rootProject.ext.dependencies["AndroidPicker"]
+    implementation rootProject.ext.dependencies["WheelPicker"]
 }

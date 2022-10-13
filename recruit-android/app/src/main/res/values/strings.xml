@@ -30,6 +30,10 @@
     <!-- 公司 -->
     <string name="search">搜索&#8230;&#8230;&#8230;</string>
     <string name="company">公司</string>
+    <string name="follow">关注</string>
+    <string name="work_time">工作时间</string>
+    <string name="weal">员工福利</string>
+    <string name="official_website">公司官网</string>
 
     <!-- 消息页 -->
     <string name="message">消息</string>
